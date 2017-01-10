@@ -91,7 +91,7 @@ public class NetworkSwitcherWidget extends AppWidgetProvider {
         Method method = getHiddenMethod("getPreferredNetworkType", TelephonyManager.class, new Class[]{int.class});
         int preferredNetwork = -1000;
         try {
-            preferredNetwork = (int) method.invoke(mTelephonyManager, (int) Math.random());
+            preferredNetwork = (int) method.invoke(mTelephonyManager, 0);
             Log.i(NetworkSwitcherWidget.class.getCanonicalName(), "Preferred Network is ::: " + preferredNetwork);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -106,7 +106,7 @@ public class NetworkSwitcherWidget extends AppWidgetProvider {
         try {
             Method setPreferredNetwork = getHiddenMethod("setPreferredNetworkType",
                     TelephonyManager.class, new Class[]{int.class, int.class});
-            Boolean success = (Boolean) setPreferredNetwork.invoke(mTelephonyManager, (int) Math.random(),
+            Boolean success = (Boolean) setPreferredNetwork.invoke(mTelephonyManager, 0,
                     networkType);
             Log.i(NetworkSwitcherWidget.class.getCanonicalName(), "Could set Network Type ::: " + (success.booleanValue() ? "YES" : "NO"));
         } catch (InvocationTargetException e) {
